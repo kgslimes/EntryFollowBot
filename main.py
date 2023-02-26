@@ -9,7 +9,7 @@ import json
 pre_id = ''
 id = ''
 
-#로그인
+# 로그인
 
 with requests.Session() as s:
     loginPage = s.get('https://playentry.org/signin')
@@ -29,7 +29,7 @@ with requests.Session() as s:
         print(f"{lid}님을 팔로우했어요!")
 
 
-#글 읽고 답하기
+# 1번째 글 받아오기 & 팔로우
 
     while True:
       try:
