@@ -9,6 +9,11 @@ import json
 pre_id = ''
 id = ''
 
+# 매우 중요함!!!!!!!
+
+usr = '봇 계정의 아이디'
+pwd = '봇 계정의 비밀번호'
+
 # 로그인
 
 with requests.Session() as s:
@@ -17,7 +22,7 @@ with requests.Session() as s:
     csrf = soup.find('meta', {'name': 'csrf-token'})
     login_headers={'CSRF-Token': csrf['content'], "Content-Type": "application/json"}
     req = s.post('https://playentry.org/graphql',     
-    headers=login_headers, json={'query':graphql.login, 'variables':{"username":os.environ['id'],"password":os.environ['pass']}})
+    headers=login_headers, json={'query':graphql.login, 'variables':{"username":usr,"password":pwd}})
     soup = bs(s.get("https://playentry.org").text, "html.parser")
     xtoken = json.loads(soup.select_one("#__NEXT_DATA__").get_text()
                         )["props"]["initialState"]["common"]["user"]["xToken"]
